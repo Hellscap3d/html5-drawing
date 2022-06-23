@@ -62,7 +62,14 @@ clearButton.addEventListener('click', function(e) {
 });
 document.body.appendChild(clearButton);
 });
-
+var toolbar = document.createElement('div');
+toolbar.style.position = 'absolute';
+toolbar.style.bottom = '0';
+toolbar.style.left = '15';
+toolbar.appendChild(colorPicker);
+toolbar.appendChild(exportButton);
+toolbar.appendChild(clearButton);
+document.body.appendChild(toolbar);
         </script>
     </head>
 </html>
