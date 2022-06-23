@@ -1,0 +1,66 @@
+
+<html>
+    <head>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+var canvas = document.createElement('canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+document.body.appendChild(canvas);
+
+var ctx = canvas.getContext('2d');
+var color = '#000000';
+var drawing = false;
+
+canvas.addEventListener('mousedown', function(e) {
+  drawing = true;
+  ctx.beginPath();
+  ctx.moveTo(e.clientX, e.clientY);
+});
+
+canvas.addEventListener('mousemove', function(e) {
+  if (drawing) {
+    ctx.lineTo(e.clientX, e.clientY);
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
+});
+
+canvas.addEventListener('mouseup', function(e) {
+  drawing = false;
+});
+
+canvas.addEventListener('mouseleave', function(e) {
+  drawing = false;
+});
+
+var colorPicker = document.createElement('input');
+colorPicker.type = 'color';
+colorPicker.value = color;
+colorPicker.addEventListener('change', function(e) {
+  color = colorPicker.value;
+});
+document.body.appendChild(colorPicker);
+
+var exportButton = document.createElement('button');
+exportButton.innerHTML = 'Export as PNG';
+exportButton.addEventListener('click', function(e) {
+  var dataURL = canvas.toDataURL('image/png');
+  var link = document.createElement('a');
+  link.href = dataURL;
+  link.download = 'drawing.png';
+  link.click();
+});
+document.body.appendChild(exportButton);
+
+var clearButton = document.createElement('button');
+clearButton.innerHTML = 'Clear Canvas';
+clearButton.addEventListener('click', function(e) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+});
+document.body.appendChild(clearButton);
+});
+        </script>
+    </head>
+</html>
