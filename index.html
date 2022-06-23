@@ -3,8 +3,8 @@
     <head>
         <script>
         document.addEventListener("DOMContentLoaded", function() {
-
 var canvas = document.createElement('canvas');
+canvas.style.border = '1px solid black';
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 document.body.appendChild(canvas);
@@ -61,7 +61,7 @@ clearButton.addEventListener('click', function(e) {
 });
 document.body.appendChild(clearButton);
 });
-canvas.style.border = '1px solid black';
+
         </script>
     </head>
 </html>
