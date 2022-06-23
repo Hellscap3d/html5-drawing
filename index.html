@@ -35,6 +35,10 @@ canvas.addEventListener('mouseup', function(e) {
 canvas.addEventListener('mouseleave', function(e) {
   drawing = false;
 });
+var toolbar = document.createElement('div');
+toolbar.style.position = 'absolute';
+toolbar.style.top = '10';
+toolbar.style.left = '15';
 
 var colorPicker = document.createElement('input');
 colorPicker.type = 'color';
@@ -42,8 +46,7 @@ colorPicker.value = color;
 colorPicker.addEventListener('change', function(e) {
   color = colorPicker.value;
 });
-document.body.appendChild(colorPicker);
-
+toolbar.appendChild(colorPicker)
 var exportButton = document.createElement('button');
 exportButton.innerHTML = 'Export as PNG';
 exportButton.addEventListener('click', function(e) {
@@ -53,22 +56,15 @@ exportButton.addEventListener('click', function(e) {
   link.download = 'drawing.png';
   link.click();
 });
-document.body.appendChild(exportButton);
+toolbar.appendChild(exportButton);
 
 var clearButton = document.createElement('button');
 clearButton.innerHTML = 'Clear Canvas';
 clearButton.addEventListener('click', function(e) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 });
-document.body.appendChild(clearButton);
-});
-var toolbar = document.createElement('div');
-toolbar.style.position = 'absolute';
-toolbar.style.top = '10';
-toolbar.style.left = '15';
-toolbar.appendChild(colorPicker);
-toolbar.appendChild(exportButton);
 toolbar.appendChild(clearButton);
+});
 document.body.appendChild(toolbar);
         </script>
     </head>
