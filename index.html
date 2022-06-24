@@ -67,6 +67,41 @@ toolbar.appendChild(clearButton);
 document.body.appendChild(toolbar);
 document.body.style.backgroundColor = '#000000';
 canvas.style.backgroundColor = '#ffffff';
+var eraser = document.createElement('button');
+eraser.innerHTML = 'Eraser';
+eraser.addEventListener('click', function(e) {
+  color = '#ffffff';
+});
+toolbar.appendChild(eraser);
+/* add mobile drawing support */
+canvas.addEventListener('touchstart', function(e) {
+  drawing = true;
+  ctx.beginPath();
+  ctx.moveTo(e.touches[0].clientX, e.touches[0].clientY);
+});
+canvas.addEventListener('touchmove', function(e) {
+  if (drawing) {
+    ctx.lineTo(e.touches[0].clientX, e.touches[0].clientY);
+    ctx.strokeStyle = color;
+    ctx.stroke();
+  }
+});
+canvas.addEventListener('touchend', function(e) {
+  drawing = false;
+});
+canvas.addEventListener('touchcancel', function(e) {
+  drawing = false;
+});
+/* add brush scaling slider */
+var brushSize = document.createElement('input');
+brushSize.type = 'range';
+brushSize.min = '1';
+brushSize.max = '100';
+brushSize.value = '10';
+brushSize.addEventListener('change', function(e) {
+  ctx.lineWidth = brushSize.value;
+});
+toolbar.appendChild(brushSize);
 });
 
         </script>
