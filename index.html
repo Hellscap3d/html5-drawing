@@ -123,6 +123,26 @@ toolbar.insertBefore(clearButton, exportButton);
 toolbar.insertBefore(brushSize, clearButton);
 toolbar.insertBefore(eraser, brushSize);
 toolbar.insertBefore(brush, eraser);
+var uploadButton = document.createElement('button');
+	uploadButton.innerHTML = 'Upload Image';
+	uploadButton.addEventListener('click', function(e) {
+	  var uploader = document.createElement('input');
+	  uploader.type = 'file';
+	  uploader.accept = 'image/*';
+	  uploader.addEventListener('change', function(e) {
+	    var reader = new FileReader();
+	    reader.addEventListener('load', function(e) {
+	      var img = new Image();
+	      img.src = reader.result;
+	      img.addEventListener('load', function(e) {
+	        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+	      });
+	    });
+	    reader.readAsDataURL(uploader.files[0]);
+	  });
+	  uploader.click();
+	});
+	toolbar.appendChild(uploadButton);
 });
 
         </script>
