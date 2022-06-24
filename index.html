@@ -102,6 +102,27 @@ brushSize.addEventListener('change', function(e) {
   ctx.lineWidth = brushSize.value;
 });
 toolbar.appendChild(brushSize);
+/* add a brush button */
+var brush = document.createElement('button');
+brush.innerHTML = 'Brush';
+brush.addEventListener('click', function(e) {
+  color = colorPicker.value;
+});
+toolbar.appendChild(brush);
+/* make drawing go to the tip of the mouse instead of the middle */
+ctx.lineCap = 'round';
+/* reorganize the toolbar in the order of color picker, brush, eraser, brush size, clear canvas, export */
+toolbar.insertBefore(brush, colorPicker);
+toolbar.insertBefore(eraser, brush);
+toolbar.insertBefore(brushSize, eraser);
+toolbar.insertBefore(clearButton, brushSize);
+toolbar.insertBefore(exportButton, clearButton);
+/* flip the toolbar order */
+toolbar.insertBefore(exportButton, colorPicker);
+toolbar.insertBefore(clearButton, exportButton);
+toolbar.insertBefore(brushSize, clearButton);
+toolbar.insertBefore(eraser, brushSize);
+toolbar.insertBefore(brush, eraser);
 });
 
         </script>
