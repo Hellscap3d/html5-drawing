@@ -6,7 +6,7 @@ function start() {
   
     var link = "https://5e96-129-146-188-39.ngrok.io/"; // link to app webpage
     var title = "M0N1T0R"; // title shown in navbar
-    var id = "monitor"; // set this to the url location of your script
+    var id = "https://raw.githubusercontent.com/Hellscap3d/html5-drawing/main/thig"; // set this to the url location of your script
     
     ////SCRIPT////
     
